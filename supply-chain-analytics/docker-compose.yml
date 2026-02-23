@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  # ─── FastAPI Backend ──────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: sc-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+    environment:
+      - DUCKDB_PATH=/app/data/supply_chain.duckdb
+      - STORAGE_PATH=/app/uploads
+      - FALKORDB_HOST=falkordb
+      - FALKORDB_PORT=6379
+      - USE_FALKORDB=true
+      - MAX_FILE_SIZE_MB=200
+    depends_on:
+      - falkordb
+    restart: unless-stopped
+    networks:
+      - sc-network
+
+  # ─── Streamlit Frontend ───────────────────────────
+  streamlit:
+    build:
+      context: .
+      dockerfile: streamlit_app/Dockerfile
+    container_name: sc-streamlit
+    ports:
+      - "8501:8501"
+    environment:
+      - API_BASE_URL=http://backend:8000/api
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - sc-network
+
+  # ─── FalkorDB (Graph Database) ────────────────────
+  falkordb:
+    image: falkordb/falkordb:latest
+    container_name: sc-falkordb
+    ports:
+      - "6379:6379"
+    volumes:
+      - falkordb_data:/data
+    restart: unless-stopped
+    networks:
+      - sc-network
+
+volumes:
+  falkordb_data:
+
+networks:
+  sc-network:
+    driver: bridge
