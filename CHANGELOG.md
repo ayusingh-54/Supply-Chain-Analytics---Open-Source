@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned
+
 - Prophet/ARIMA demand forecasting integration
 - ABC/XYZ inventory classification
 - User authentication and RBAC
@@ -21,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 #### Core Platform
+
 - **FastAPI Backend** — RESTful API with Swagger/ReDoc documentation
 - **Streamlit Frontend** — Multi-page data management UI with file upload wizard
 - **DuckDB Integration** — Embedded OLAP database for analytical queries
@@ -28,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **MCP Server** — 12-tool Model Context Protocol server for AI integration
 
 #### Data Management
+
 - File upload with automatic schema validation (CSV/XLSX)
 - Data quality engine with duplicate detection, null handling, and constraint checks
 - Quality scoring (0-100) based on valid row ratio and unresolved issues
@@ -35,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Template download for all data categories (Sales, Inventory, Supplier, Purchase Orders)
 
 #### Analytics
+
 - Key Performance Indicator (KPI) dashboard across all data categories
 - Sales summary with date, SKU, and region filtering
 - Inventory status monitoring with reorder alerts
@@ -42,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Custom SQL query execution (SELECT only, with security filtering)
 
 #### AI Integration (MCP Tools)
+
 - `query_sales_data` — Sales data queries with aggregation modes
 - `query_inventory` — Inventory level checks with status filtering
 - `query_suppliers` — Supplier information lookup with country/rating filters
@@ -56,6 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `get_supply_chain_graph` — Supply chain relationship network
 
 #### Infrastructure
+
 - Docker Compose deployment with 3 services (backend, streamlit, falkordb)
 - Individual Dockerfiles for backend and frontend
 - Platform-specific start scripts (Windows `.bat`, Linux/macOS `.sh`)
@@ -64,6 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - pytest test suite with API and service tests
 
 #### Security
+
 - SQL injection prevention (SELECT-only with keyword blocklist)
 - Read-only DuckDB connections in MCP server
 - CORS middleware configuration
@@ -75,6 +82,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2024-12-01
 
 ### Added
+
 - Initial project scaffolding
 - Basic DuckDB database schema
 - Proof-of-concept MCP server with 3 tools
